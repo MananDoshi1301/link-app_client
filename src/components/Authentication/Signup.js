@@ -33,8 +33,8 @@ const Signup = () => {
     e.preventDefault();
     const { email, password } = cred;
 
-
-    const response = await fetch("/signup", {
+    const responseURL = process.env.REACT_APP_API_URL + '/signup';
+    const response = await fetch(responseURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

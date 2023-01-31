@@ -33,7 +33,8 @@ const AddLink = ({userid}) => {
     const isValidUrl = checkUrlValidity(url);
     // console.log(title, url);
 
-    const response = await fetch("/link-page/add-link", {
+    const responseURL = process.env.REACT_APP_API_URL+'/link-page/add-link';
+    const response = await fetch(responseURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

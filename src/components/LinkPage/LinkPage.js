@@ -20,7 +20,8 @@ const LinkPage = ({ details, setDetails }) => {
   const getLinks = useCallback(async () => {
 
     try {
-      const res = await fetch(`/link-page/${details.id}`, {
+      const resGetLinks = process.env.REACT_APP_API_URL + `/link-page/${details.id}`;
+      const res = await fetch(resGetLinks, {
         method: "GET",
         headers: {
           'Accept': "application/json",
@@ -38,8 +39,8 @@ const LinkPage = ({ details, setDetails }) => {
   const deleteLink = async (linkId) => {
 
     try {
-
-      const res = await fetch('/link-page/delete-link', {
+      const resDeleteLink = process.env.REACT_APP_API_URL + '/link-page/delete-link';
+      const res = await fetch(resDeleteLink, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
