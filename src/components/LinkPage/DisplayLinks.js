@@ -83,7 +83,7 @@ const DisplayLinks = ({ linkData = [], deleteLink }) => {
                     try {
                       await navigator.clipboard.writeText(urlParam)
                       toast({
-                        title: `Text Copied Successfully!`,
+                        title: `Link Copied Successfully!`,
                         variant: 'solid',
                         isClosable: true,
                       })
