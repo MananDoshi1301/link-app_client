@@ -9,13 +9,13 @@ const LinkPage = ({ details, setDetails }) => {
   const [linkData, setLinkData] = useState([]);
   const navigate = useNavigate();
 
-  window.onload = function () {
-    if (!window.location.hash) {
-      // window.alert('ONLOAD')
-      window.location = window.location + '#loaded';
-      window.location.reload();
-    }
-  }
+  // window.onload = function () {
+  //   if (!window.location.hash) {
+  //     // window.alert('ONLOAD')
+  //     window.location = window.location + '#loaded';
+  //     window.location.reload();
+  //   }
+  // }
 
   const getLinks = useCallback(async () => {
 
