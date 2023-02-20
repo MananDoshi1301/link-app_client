@@ -127,7 +127,8 @@ const Navbar = ({ details, setDetails }) => {
                 </Center>
                 <br />
                 <Center>
-                  <p>{`Hello ${details.email.split('@')[0]}!`}</p>
+                  {console.log(details)}
+                  {/* <p>{`Hello ${details.email.split('@')[0]}!`}</p> */}
                 </Center>
                 <br />
                 <MenuDivider />
