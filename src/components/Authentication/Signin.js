@@ -52,9 +52,9 @@ const Signin = ({ setDetails }) => {
       window.alert(res_data.message);
       if (res_data.error === false) {
         sessionStorage.setItem("details", JSON.stringify({
-          email: email, id: res_data.id, isLoggedIn: true,
+          email: res_data.email, id: res_data.data.userid, isLoggedIn: true,
         }))
-        setDetails({ email: email, id: res_data.id, isLoggedIn: true });
+        setDetails({ email: res_data.email, id: res_data.data.userid, isLoggedIn: true });
         navigate("/link-page");
       }
     }
