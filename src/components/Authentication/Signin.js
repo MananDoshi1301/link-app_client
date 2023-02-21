@@ -12,6 +12,7 @@ import {
   Heading,
   Text,
   useColorModeValue,
+  Spinner,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
@@ -22,6 +23,7 @@ const Signin = ({ setDetails }) => {
     password: ""
   })
 
+  const [signSpinner, setSignSpinner] = useState(false);
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -30,8 +32,10 @@ const Signin = ({ setDetails }) => {
 
   const PostData = async (e) => {
     e.preventDefault();
-    const { email, password } = cred;
 
+    setSignSpinner(true);
+
+    const { email, password } = cred;
     const responseUrl = process.env.REACT_APP_API_URL + '/signin/';
     // console.log(responseUrl);
     const response = await fetch(responseUrl, {
@@ -45,6 +49,7 @@ const Signin = ({ setDetails }) => {
     });
 
     const res = await response.json();
+    setSignSpinner(false);
 
     if (response.status === 422 || !res) {
       window.alert("Invalid Login\n" + res.message);
@@ -123,7 +128,17 @@ const Signin = ({ setDetails }) => {
                     _hover={{
                       bg: 'blue.500',
                     }}>
-                    Sign in
+
+                    {
+                      signSpinner ?
+                        <Spinner
+                          thickness='7px'
+                          emptyColor='gray.200'
+                          color='blue.500'
+                          size='md'
+                        />
+                        : "Sign in"
+                    }
                   </Button>
                 </Stack>
               </Stack>
