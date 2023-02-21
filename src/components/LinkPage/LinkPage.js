@@ -2,11 +2,12 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DisplayLinks from './DisplayLinks';
 import NoLinks from './NoLinks';
+import { Skeleton, Stack } from '@chakra-ui/react';
 
 
 const LinkPage = ({ details, setDetails }) => {
 
-  const [linkData, setLinkData] = useState([]);
+  const [linkData, setLinkData] = useState(null);
   const navigate = useNavigate();
 
   // window.onload = function () {
@@ -93,10 +94,19 @@ const LinkPage = ({ details, setDetails }) => {
   return (
     <>
       {
-        (linkData && linkData.length !== 0) ?
-          (<DisplayLinks linkData={linkData} deleteLink={deleteLink} />) : (
-            <NoLinks />
-          )
+        (
+          linkData === null ? (
+            <Stack p={10}>
+              <Skeleton height='200px' />
+              <Skeleton height='175px' />
+              <Skeleton height='150px' />
+            </Stack>
+          ) :
+            (linkData && linkData.length !== 0) ?
+              (<DisplayLinks linkData={linkData} deleteLink={deleteLink} />) : (
+                <NoLinks />
+              )
+        )
       }
     </>
   )
