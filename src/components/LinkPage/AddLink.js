@@ -9,6 +9,7 @@ import {
   Input,
   Stack,
   useColorModeValue,
+  Spinner
 } from '@chakra-ui/react';
 
 const AddLink = ({details}) => {
@@ -16,6 +17,8 @@ const AddLink = ({details}) => {
   const [linkDet, setLinkDet] = useState({
     title:"", url:""
   })
+
+  const [submitLink, setSubmitLink] = useState(false);
 
   const handleInputChange = (e) => {
     setLinkDet({ ...linkDet, [e.target.name]: e.target.value });
@@ -29,6 +32,7 @@ const AddLink = ({details}) => {
 
   const PostData = async (e) => {
     e.preventDefault();
+    setSubmitLink(true);
     const { title, url } = linkDet;
     const isValidUrl = checkUrlValidity(url.trim());
     // console.log(title, url);
@@ -48,6 +52,7 @@ const AddLink = ({details}) => {
 
     const res_data = await response.json();
     // console.log(res_data)
+    setSubmitLink(false);
     if (response.status === 422 || !res_data) {
       window.alert("Error\n" + res_data.message);
     } else {
@@ -113,7 +118,15 @@ const AddLink = ({details}) => {
             _hover={{
               bg: 'blue.500',
             }}>
-            Submit
+              {
+                submitLink ? 
+                <Spinner 
+                  thickness='7px'
+                  emptyColor='gray.200'
+                  color='blue.500'
+                  size='md'
+                /> : "Submit"
+              }            
           </Button>
         </Stack>
       </Stack>
