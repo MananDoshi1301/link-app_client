@@ -44,7 +44,8 @@ const LinkPage = ({ details, setDetails }) => {
       const res = await fetch(resDeleteLink, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Authorization": details.authToken
         },
         body: JSON.stringify({
           linkId, userId: details.id
@@ -54,8 +55,8 @@ const LinkPage = ({ details, setDetails }) => {
       const res_data = await res.json();
       if (res_data.error === false) {
         // window.alert('DELETE');
-        window.location = window.location + '#loaded';
-        navigate(0)
+        // window.location = window.location + '#loaded';
+        navigate("/link-page")
       } else {
 
       }
@@ -68,21 +69,21 @@ const LinkPage = ({ details, setDetails }) => {
 
   useEffect(() => {
 
-    const session = JSON.parse(sessionStorage.getItem('details'));
+    // const session = JSON.parse(sessionStorage.getItem('details'));
 
-    if (details.isLoggedIn === false && session === null) {
+    if (details.isLoggedIn === false) {
       navigate("/please-log-in");
       return 0;
     }
 
-    if (!details.id) {
-      const newDetails = {
-        email: session.email,
-        id: session.id,
-        isLoggedIn: true
-      }
-      setDetails(newDetails);
-    }
+    // if (!details.id) {
+    //   const newDetails = {
+    //     email: session.email,
+    //     id: session.id,
+    //     isLoggedIn: true
+    //   }
+    //   setDetails(newDetails);
+    // }
 
     getLinks();
   }, [details.id, details.isLoggedIn, setDetails, getLinks, navigate])
