@@ -54,6 +54,13 @@ const Signin = ({ setDetails }) => {
       window.alert(res.message);
       if (res.error === false) {
 
+        sessionStorage.setItem("details", JSON.stringify({
+          email: res.data.email,
+          id: res.data.userid,
+          acT: res.authToken,
+          isLoggedIn: true
+        }))
+
         setDetails({
           email: res.data.email, id: res.data.userid, isLoggedIn: true, authToken: "Bearer " + res.authToken
         });

@@ -56,7 +56,8 @@ const LinkPage = ({ details, setDetails }) => {
       if (res_data.error === false) {
         // window.alert('DELETE');
         // window.location = window.location + '#loaded';
-        navigate("/link-page")
+        getLinks();
+        // navigate("/link-page")
       } else {
 
       }
@@ -69,21 +70,22 @@ const LinkPage = ({ details, setDetails }) => {
 
   useEffect(() => {
 
-    // const session = JSON.parse(sessionStorage.getItem('details'));
+    const session = JSON.parse(sessionStorage.getItem('details'));
 
-    if (details.isLoggedIn === false) {
+    if (session === null) {
       navigate("/please-log-in");
       return 0;
     }
 
-    // if (!details.id) {
-    //   const newDetails = {
-    //     email: session.email,
-    //     id: session.id,
-    //     isLoggedIn: true
-    //   }
-    //   setDetails(newDetails);
-    // }
+    if (!details.id) {
+      const newDetails = {
+        email: session.email,
+        id: session.id,
+        isLoggedIn: true,
+        authToken: "Bearer " + session.acT
+      }
+      setDetails(newDetails);
+    }
 
     getLinks();
   }, [details.id, details.isLoggedIn, setDetails, getLinks, navigate])
