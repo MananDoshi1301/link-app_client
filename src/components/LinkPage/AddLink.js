@@ -30,7 +30,7 @@ const AddLink = ({details}) => {
   const PostData = async (e) => {
     e.preventDefault();
     const { title, url } = linkDet;
-    const isValidUrl = checkUrlValidity(url);
+    const isValidUrl = checkUrlValidity(url.trim());
     // console.log(title, url);
 
     const responseURL = process.env.REACT_APP_API_URL+'/link-page/add-link';
