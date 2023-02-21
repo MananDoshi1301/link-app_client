@@ -26,7 +26,7 @@ function App() {
 
           <Route path={'/signin'} element={<Signin setDetails={setDetails} />} />
 
-          <Route path={'/link-page/add-link'} element={<AddLink userid={details.id} />} />
+          <Route path={'/link-page/add-link'} element={<AddLink details={details} />} />
 
           <Route path={'/link-page'} element={<LinkPage details={details} setDetails={setDetails} />} />
 

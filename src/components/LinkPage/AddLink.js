@@ -11,7 +11,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 
-const AddLink = ({userid}) => {
+const AddLink = ({details}) => {
   
   const [linkDet, setLinkDet] = useState({
     title:"", url:""
@@ -37,10 +37,11 @@ const AddLink = ({userid}) => {
     const response = await fetch(responseURL, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": details.authToken
       },
       body: JSON.stringify({
-        userid:userid,
+        userid:details.id,
         links:{title, url, isValidUrl}
       })
     });
