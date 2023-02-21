@@ -55,7 +55,7 @@ const Signin = ({ setDetails }) => {
       if (res.error === false) {
 
         setDetails({
-          email: res.data.email, id: res.data.userid, isLoggedIn: true, authToken: res.authToken
+          email: res.data.email, id: res.data.userid, isLoggedIn: true, authToken: "Bearer " + res.authToken
         });
 
         navigate("/link-page");
