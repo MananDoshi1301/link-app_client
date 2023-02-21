@@ -44,17 +44,20 @@ const Signin = ({ setDetails }) => {
       })
     });
 
-    const res_data = await response.json();
-    // console.log(res_data)
-    if (response.status === 422 || !res_data) {
-      window.alert("Invalid Login\n" + res_data.message);
-    } else {
-      window.alert(res_data.message);
-      if (res_data.error === false) {
-        sessionStorage.setItem("details", JSON.stringify({
-          email: res_data.email, id: res_data.data.userid, isLoggedIn: true,
-        }))
-        setDetails({ email: res_data.email, id: res_data.data.userid, isLoggedIn: true });
+    const res = await response.json();
+
+    if (response.status === 422 || !res) {
+      window.alert("Invalid Login\n" + res.message);
+    }
+
+    else {
+      window.alert(res.message);
+      if (res.error === false) {
+
+        setDetails({
+          email: res.data.email, id: res.data.userid, isLoggedIn: true, authToken: res.authToken
+        });
+
         navigate("/link-page");
       }
     }
