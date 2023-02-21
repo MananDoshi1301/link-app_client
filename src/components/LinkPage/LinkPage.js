@@ -26,6 +26,7 @@ const LinkPage = ({ details, setDetails }) => {
         headers: {
           'Accept': "application/json",
           // 'Content-Type': 'application/json'  
+          'Authorization': details.authToken,
         }
       })
       const data = await res.json();
