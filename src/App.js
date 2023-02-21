@@ -13,7 +13,7 @@ import ErrorPage from './components/ErrorPage';
 function App() {
 
   const [details, setDetails] = useState({
-    email: "user", id: "", isLoggedIn: false
+    email: "user", id: "", isLoggedIn: false, authToken: "",
   })
 
   return (
