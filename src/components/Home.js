@@ -28,6 +28,17 @@ const Home = () => {
     ),
   });
 
+  const StartServer = async () => {
+
+    const resUrl = process.env.REACT_APP_API_URL;
+    const req = await fetch(resUrl, {
+      method: 'GET',
+      // 'Content-Type': 'application/json',
+    })
+    const res = await req.json();
+    if (res.error === false)
+      console.log(res.msg);
+  }
 
   const HomeComp = () => (
     <>
@@ -56,16 +67,19 @@ const Home = () => {
             align={'center'}
             alignSelf={'center'}
             position={'relative'}>
-            <Button
-              colorScheme={'blue'}
-              bg={'blue.400'}
-              rounded={'full'}
-              px={6}
-              _hover={{
-                bg: 'blue.500',
-              }}>
-              <Link to={'./signin'}>Get Started</Link>
-            </Button>
+            <Link to={'./signin'}>
+              <Button
+                onClick={StartServer}
+                colorScheme={'blue'}
+                bg={'blue.400'}
+                rounded={'full'}
+                px={6}
+                _hover={{
+                  bg: 'blue.500',
+                }}>
+                Get Started
+              </Button>
+            </Link>
             {/* <Button variant={'link'} colorScheme={'blue'} size={'sm'}>
               Learn more
             </Button> */}
