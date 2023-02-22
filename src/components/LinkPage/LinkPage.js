@@ -26,15 +26,14 @@ const LinkPage = ({ details, setDetails }) => {
         method: "GET",
         headers: {
           'Accept': "application/json",
-          // 'Content-Type': 'application/json'  
-          'Authorization': details.authToken,
+          'Authorization': details.authToken
         }
       })
       const data = await res.json();
       setLinkData(data.data);
 
     } catch (err) {
-      // console.log(err);
+      console.log(err);
     }
   }, [details.id])
 
