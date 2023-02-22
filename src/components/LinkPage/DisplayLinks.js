@@ -9,7 +9,8 @@ import {
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
-  useDisclosure
+  useDisclosure,
+  Spinner
 } from '@chakra-ui/react';
 import { CopyIcon, DeleteIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 
@@ -124,7 +125,18 @@ const DisplayLinks = ({ linkData = [], deleteLink }) => {
                     onOpen();
                   }
                 }
-                colorScheme="red"><DeleteIcon /></Button>
+                colorScheme="red">
+                {
+                  delLink.linkId === linkId ? (
+                    <Spinner
+                      thickness='7px'
+                      speed='0.65s'
+                      emptyColor='gray.200'
+                      color='red.500'
+                      size='md' />
+                  ) : <DeleteIcon />
+                }
+              </Button>
             </Stack>
           </Stack>
 
